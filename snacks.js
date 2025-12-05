@@ -1,0 +1,100 @@
+// blank obj: {name: "", category: "", price: 0.00, inStock: true}
+let snacks = [
+    { name: "Classic Potato Chips", category: "Chips", price: 2.49, inStock: true },
+    { name: "Cheddar Popcorn", category: "Popcorn", price: 3.29, inStock: true },
+    { name: "Salted Pretzels", category: "Pretzels", price: 1.99, inStock: false },
+    { name: "Chocolate Chip Cookies", category: "Cookies", price: 4.59, inStock: true },
+    { name: "Granola Bar", category: "Bars", price: 1.29, inStock: true },
+    { name: "Beef Jerky", category: "Jerky", price: 5.99, inStock: false },
+    { name: "Gummy Bears", category: "Candy", price: 2.79, inStock: true },
+    { name: "Dark Chocolate Bar", category: "Candy", price: 3.49, inStock: true }
+]
+
+// adds item to end of array
+function addSnack(name, cat, price, stock) {
+    snacks.push({name: name, category: cat, price: price, inStock: stock})
+}
+
+// deletes item idx
+function deleteSnack(idx) {
+    snacks.splice(idx, 1)
+}
+
+// changes inStock value of item idx
+function updateStock(idx, val) {
+    snacks[idx].inStock = val
+}
+
+// gets the first index of item with name
+function getIdxOfSnack(name) {
+    return snacks.findIndex((element) => element.name === name)
+}
+
+// sorts snacks alphabetically
+function sortABC() {
+    snacks.sort(function (a, b) {
+        if (a.name > b.name) {
+            return 1
+        }
+        if (a.name < b.name) {
+            return -1
+        }
+        return 0
+    })
+}
+
+// sorts snack by price low to high
+function sortPrice() {
+    snacks.sort((a, b) => a.price - b.price)
+}
+
+// return string of every snack's name
+function getAllNames() {
+    let arr = []
+    for (let i of snacks) {
+        arr.push(i.name)
+    }
+    return arr.join(', ')
+}
+
+// takes an input of comma seperated list and return an array with each item
+function getInputList(input) {
+    let arr = input.split(',')
+
+    for (let i = 0; i < arr.length; i++) {
+        let letters = arr[i].split('')
+        
+        // removes spaces from beginning/end
+        if (letters[0] == ' ') {
+            letters.shift()
+        }
+        if (letters[letters.length - 1] == ' ') {
+            letters.pop()
+        }
+        
+        arr[i] = letters.join('')
+    }
+
+    return arr
+}
+
+// TESTS
+// adds protein bar
+addSnack('Protein Bar', 'Bars', 1.99, true)
+console.log('Add: ', snacks)
+// deletes protein bar by getting its index from its name
+deleteSnack(getIdxOfSnack('Protein Bar'))
+console.log('Remove: ', snacks)
+// puts cookies out of stock with same method
+updateStock(getIdxOfSnack('Chocolate Chip Cookies'), false)
+console.log('Update: ', snacks)
+// sort alphabetically
+sortABC()
+console.log('ABC sort: ', snacks)
+// sort by price
+sortPrice()
+console.log('Price sort: ', snacks)
+// prints all snack names
+console.log('Names: ', getAllNames())
+// gets input list and return array
+console.log('Input: ', getInputList('Cookie, Protein Bar, Chips'))
