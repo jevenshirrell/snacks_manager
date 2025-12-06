@@ -1,3 +1,7 @@
+const list = document.getElementById('list')
+const listInput = document.getElementById('listInput')
+const shoppingList = document.getElementById('shoppingList')
+
 // blank obj: {name: "", category: "", price: 0.00, inStock: true}
 let snacks = [
     { name: "Classic Potato Chips", category: "Chips", price: 2.49, inStock: true },
@@ -10,6 +14,10 @@ let snacks = [
     { name: "Dark Chocolate Bar", category: "Candy", price: 3.49, inStock: true }
 ]
 
+let showOut = false
+
+
+// BASE FUNCTIONS
 // adds item to end of array
 function addSnack(name, cat, price, stock) {
     snacks.push({name: name, category: cat, price: price, inStock: stock})
@@ -41,11 +49,13 @@ function sortABC() {
         }
         return 0
     })
+    updateList()
 }
 
 // sorts snack by price low to high
 function sortPrice() {
     snacks.sort((a, b) => a.price - b.price)
+    updateList()
 }
 
 // return string of every snack's name
@@ -78,23 +88,77 @@ function getInputList(input) {
     return arr
 }
 
-// TESTS
-// adds protein bar
-addSnack('Protein Bar', 'Bars', 1.99, true)
-console.log('Add: ', snacks)
-// deletes protein bar by getting its index from its name
-deleteSnack(getIdxOfSnack('Protein Bar'))
-console.log('Remove: ', snacks)
-// puts cookies out of stock with same method
-updateStock(getIdxOfSnack('Chocolate Chip Cookies'), false)
-console.log('Update: ', snacks)
-// sort alphabetically
-sortABC()
-console.log('ABC sort: ', snacks)
-// sort by price
-sortPrice()
-console.log('Price sort: ', snacks)
-// prints all snack names
-console.log('Names: ', getAllNames())
-// gets input list and return array
-console.log('Input: ', getInputList('Cookie, Protein Bar, Chips'))
+// // TESTS
+// // adds protein bar
+// addSnack('Protein Bar', 'Bars', 1.99, true)
+// console.log('Add: ', snacks)
+// // deletes protein bar by getting its index from its name
+// deleteSnack(getIdxOfSnack('Protein Bar'))
+// console.log('Remove: ', snacks)
+// // puts cookies out of stock with same method
+// updateStock(getIdxOfSnack('Chocolate Chip Cookies'), false)
+// console.log('Update: ', snacks)
+// // sort alphabetically
+// sortABC()
+// console.log('ABC sort: ', snacks)
+// // sort by price
+// sortPrice()
+// console.log('Price sort: ', snacks)
+// // prints all snack names
+// console.log('Names: ', getAllNames())
+// // gets input list and return array
+// console.log('Input: ', getInputList('Cookie, Protein Bar, Chips'))
+
+// WEBSITE FUNCTIONS
+// uses a variable to show/hide out of stock items
+function changeStockView() {
+    showOut = !showOut
+    updateList()
+}
+
+// update shopping list based on input
+function updateShoppingList() {
+    let arr = getInputList(listInput.value)
+    for (let i of arr) {
+        const newItem = document.createElement('li')
+            newItem.textContent = i
+            // crosses off shopping list item when clicked
+            newItem.addEventListener('mousedown',(e) =>{
+                console.log(newItem.style.textDecoration)
+                if (newItem.style.textDecoration === 'line-through 3px') {
+                    newItem.style.textDecoration = 'none'
+                    newItem.style.color = 'var(--text)'
+                } else {
+                    newItem.style.textDecoration = 'line-through 3px'
+                    newItem.style.color = 'var(--card)'
+                }
+            })
+            shoppingList.appendChild(newItem)
+    }
+
+    // clear input
+    listInput.value = ''
+}
+
+
+
+// resets list and adds new items
+function updateList() {
+    console.log(list.children)
+    while (list.firstChild) {
+        list.firstChild.remove()
+    }
+    for (let i of snacks) {
+        if (i.inStock || showOut) {
+            const newItem = document.createElement('li')
+            newItem.textContent = `${i.name} - $${i.price}`
+            if (!i.inStock) {
+                newItem.style.color = "var(--panel)"
+                newItem.textContent += " (Out of stock)"
+            }
+            list.appendChild(newItem)
+        }
+    }
+}
+
+updateList()

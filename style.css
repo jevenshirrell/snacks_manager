@@ -1,0 +1,122 @@
+/* setup */
+@font-face {
+    font-family: Helvetica;
+    src: url(./Helvetica-Bold.ttf);
+}
+:root{
+    --bg:#F2EFE9;
+    --text:#59554D;
+    --panel:#8C8880;
+    --card:#BFBBB4;
+}
+/* base styles */
+* {
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+body {
+    place-items: start center;
+    font-family: Helvetica;
+    background-color: var(--bg);
+    color: var(--text);
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* list */
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+li {
+    list-style: none;
+    padding: 5px;
+}
+
+/* Options */
+/* sorting buttons */
+.options, .sorting {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+}
+button, input[type="submit"] {
+    border-radius: 50px;
+    border: none;
+    padding: 5px 10px;
+    color: var(--bg);
+    background-color: var(--panel);
+    font-family: Helvetica;
+    transition: .25s;
+}
+button:hover, input[type="submit"]:hover {
+    background-color: var(--card);
+    cursor: pointer;
+}
+/* checkbox */
+.checkContainer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 25px;
+}
+input[type="checkbox"] {
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    border: 3px solid var(--panel);
+    transition: .25s;
+}
+
+input[type="checkbox"]:hover {
+    background-color: #8c88802f;
+}
+input:checked {
+    background-color: var(--panel);
+}
+input:checked:hover {
+    background-color: #8c8880a8;
+}
+
+/* Shopping list */
+.listsContainer{
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+.slContainer, .menuContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+}
+.slContainer p {
+    font-size: small;
+}
+.slContainer li {
+    transition: .25s;
+}
+.slContainer li:hover {
+    color: var(--card);
+    cursor: pointer;
+}
+/* text input */
+input[type="text"] {
+    border-radius: 5px;
+    padding: 3px;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    border: 3px solid var(--panel);
+    font-family: Helvetica;
+    color: var(--text);
+}

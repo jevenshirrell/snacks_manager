@@ -3,9 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Snack Shop</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <h1 class="title">Snack Shop</h1>
+    <div class="options">
+        <div class="sorting">
+            <p>Sort By: </p>
+            <button id="sortABC" onclick="sortABC()">Name</button>
+            <button id="sortPrice" onclick="sortPrice()">Price</button>
+            <!-- <button id="sort"></button> -->
+        </div>
+        <label for="stock" class="checkContainer">Show out of stock
+            <input type="checkbox" name="stock" id="inStock" onclick="changeStockView()">
+        </label>
+    </div>
+    <div class="listsContainer">
+        <div class="menuContainer">
+            <h2>Menu</h2>
+            <ul id="list"></ul>
+        </div>
+        <div class="slContainer">
+            <h2>Your List</h2>
+            <h3>Add items:<p>(separate with commas)</p></h3>
+            <div>
+                <input type="text" id="listInput">
+                <input type="submit" value="Submit" onclick="updateShoppingList()">
+            </div>
+            <ul class="sl" id="shoppingList"></ul>
+        </div>
+    </div>
+
+    <script src="./snacks.js"></script>
 </body>
 </html>
