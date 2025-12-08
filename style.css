@@ -59,12 +59,16 @@ button:hover, input[type="submit"]:hover {
     background-color: var(--card);
     cursor: pointer;
 }
+/* categories selector */
+option:disabled {
+    color: var(--card);
+}
 /* checkbox */
 .checkContainer{
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-left: 25px;
+    /* margin-left: 25px; */
 }
 input[type="checkbox"] {
     appearance: none;
@@ -75,7 +79,6 @@ input[type="checkbox"] {
     border: 3px solid var(--panel);
     transition: .25s;
 }
-
 input[type="checkbox"]:hover {
     background-color: #8c88802f;
 }
@@ -85,20 +88,32 @@ input:checked {
 input:checked:hover {
     background-color: #8c8880a8;
 }
+/* category selector */
+select{
+    border-radius: 5px;
+    padding: 3px;
+    background-color: var(--panel);
+    border-radius: 5px;
+    font-family: Helvetica;
+    color: var(--bg);
+}
 
 /* Shopping list */
-.listsContainer{
+.listsContainer {
     display: flex;
     align-items: flex-start;
     gap: 20px;
 }
-.slContainer, .menuContainer{
+.slContainer, .menuContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
     text-align: center;
+}
+.menuContainer {
+    width: 300px;
 }
 .slContainer p {
     font-size: small;
