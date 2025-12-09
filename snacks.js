@@ -2,6 +2,14 @@ const list = document.getElementById('list')
 const listInput = document.getElementById('listInput')
 const shoppingList = document.getElementById('shoppingList')
 const categoryDropdown = document.getElementById('categories')
+const snacksLabel = document.getElementById('allSnacks')
+const indexSelector = document.getElementById('getIndex')
+const indexLabel = document.getElementById('indexLabel')
+
+const addName = document.getElementById('newName')
+const addPrice = document.getElementById('newPrice')
+const addCategory = document.getElementById('newCategory')
+const addStock = document.getElementById('newStock')
 
 // blank obj: {name: "", category: "", price: 0.00, inStock: true}
 let snacks = [
@@ -30,8 +38,8 @@ function deleteSnack(idx) {
 }
 
 // changes inStock value of item idx
-function updateStock(idx, val) {
-    snacks[idx].inStock = val
+function updateStock(idx) {
+    snacks[idx].inStock = !snacks[idx].inStock
 }
 
 // gets the first index of item with name
@@ -170,29 +178,85 @@ function updateList() {
             list.appendChild(newItem)
         }
     }
+
+    updateIndexDropdown()
+    snacksLabel.innerHTML = 'All Snacks: ' + getAllNames()
 }
 
-// adds categories into dropdown
-function updateCats() {
+// updates the dropdown based on items in arr
+function updateDropdown(element, arr, mainOpt) {
+    while (element.firstChild) {
+        element.firstChild.remove()
+    }
     let cats = []
-    for (let i of snacks) {
-        if (!cats.includes(i.category)) {
-            cats.push(i.category)
+    for (let i of arr) {
+        if (!cats.includes(i)) {
+            cats.push(i)
         }
     }
+    let mainOption = document.createElement('option')
+    mainOption.value = mainOpt
+    mainOption.innerHTML = mainOpt
+    element.appendChild(mainOption)
     // console.log(cats)
     for (let i of cats) {
         let newCat = document.createElement('option')
         newCat.value = i
         newCat.innerHTML = i
-        categoryDropdown.appendChild(newCat)
+        element.appendChild(newCat)
     }
 }
-
 categoryDropdown.addEventListener('change', (e) => {
     updateList()
 })
 
+// adds categories into dropdown
+function updateCats() {
+    let arr = []
+    snacks.forEach(el => arr.push(el.category))
+    updateDropdown(categoryDropdown, arr, 'Category:')
+}
 
-updateList()
+
+// functions for options panel
+// add snack using input and above function
+function addSnackFromInput() {
+    if (addName.value && addPrice.value && addCategory.value) {
+        addSnack(addName.value, addCategory.value, addPrice.value, addStock.checked)
+    } else {
+        alert('Please input all fields')
+    }
+    updateList()
+    updateCats()
+}
+
+// updates dropdown
+function updateIndexDropdown() {
+    let arr = []
+    snacks.forEach(el => arr.push(el.name))
+    updateDropdown(indexSelector, arr, 'Choose a snack')
+}
+// removes chosen snack
+function removeChosenSnack() {
+    if (indexSelector.value != 'Choose a snack') {
+        deleteSnack(getIdxOfSnack(indexSelector.value))
+        updateList()
+    }
+}
+// changes stock of chosen snack
+function changeStock() {
+    if (indexSelector.value != 'Choose a snack') {
+        updateStock(getIdxOfSnack(indexSelector.value))
+        updateList()
+    }
+}
+// shows index of chosen snack
+function updateIndex() {
+    if (indexSelector.value != 'Choose a snack') {
+        indexLabel.innerHTML = 'Index: ' + getIdxOfSnack(indexSelector.value)
+    }
+}
+
+
 updateCats()
+updateList()

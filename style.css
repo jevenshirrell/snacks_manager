@@ -81,6 +81,7 @@ input[type="checkbox"] {
 }
 input[type="checkbox"]:hover {
     background-color: #8c88802f;
+    cursor: pointer;
 }
 input:checked {
     background-color: var(--panel);
@@ -126,7 +127,7 @@ select{
     cursor: pointer;
 }
 /* text input */
-input[type="text"] {
+input[type="text"], input[type="number"] {
     border-radius: 5px;
     padding: 3px;
     background-color: rgba(0, 0, 0, 0);
@@ -134,4 +135,19 @@ input[type="text"] {
     border: 3px solid var(--panel);
     font-family: Helvetica;
     color: var(--text);
+}
+
+/* options */
+.optionsContainer, .addSnack, .getIndex, .allSnacks {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.optionsContainer {
+    flex-direction: column;
+}
+.allSnacks {
+    text-align: center;
+    width: 500px;
 }
