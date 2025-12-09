@@ -27,6 +27,12 @@ body {
     align-items: center;
     justify-content: center;
 }
+h1 {font-size: 3rem;}
+h2 {font-size: 2.5rem;}
+h3 {font-size: 1.75rem;}
+h4, li {font-size: 1.25rem;}
+p, input, button, select, label {font-size: 1.125rem;}
+
 
 /* list */
 ul {
@@ -49,7 +55,7 @@ li {
 button, input[type="submit"] {
     border-radius: 50px;
     border: none;
-    padding: 5px 10px;
+    padding: 7px 12px;
     color: var(--bg);
     background-color: var(--panel);
     font-family: Helvetica;
@@ -68,15 +74,14 @@ option:disabled {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* margin-left: 25px; */
 }
 input[type="checkbox"] {
     appearance: none;
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25px;
     background-color: rgba(0, 0, 0, 0);
     border-radius: 5px;
-    border: 3px solid var(--panel);
+    border: 4px solid var(--panel);
     transition: .25s;
 }
 input[type="checkbox"]:hover {
@@ -92,7 +97,7 @@ input:checked:hover {
 /* category selector */
 select{
     border-radius: 5px;
-    padding: 3px;
+    padding: 4px;
     background-color: var(--panel);
     border-radius: 5px;
     font-family: Helvetica;
@@ -114,7 +119,7 @@ select{
     text-align: center;
 }
 .menuContainer {
-    width: 300px;
+    width: 350px;
 }
 .slContainer p {
     font-size: small;
@@ -129,10 +134,10 @@ select{
 /* text input */
 input[type="text"], input[type="number"] {
     border-radius: 5px;
-    padding: 3px;
+    padding: 4px;
     background-color: rgba(0, 0, 0, 0);
     border-radius: 5px;
-    border: 3px solid var(--panel);
+    border: 4px solid var(--panel);
     font-family: Helvetica;
     color: var(--text);
 }
